@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="./shorten.css" />
+
+  <!-- clearing cache
+    <meta http-equiv='cache-control' content='no-cache'> 
+    <meta http-equiv='expires' content='0'> 
+    <meta http-equiv='pragma' content='no-cache'> -->
+
+  <title>URLShortener</title>
+</head>
+
+<body>
+
+  <p> URL SHORTENER </p>
+  <p id="error"></p>
+  <div class="box" id="loginSignup">
+    <div id="loginBox">
+      <label class="header" id="loginHead"><strong>Login</strong></label>
+      <div class="inline" id="login">
+
+        <label for="loginU" class="usernameLabel">Enter username:</label>
+        <input type="text" name="username" class="input" id="loginU" />
+        <label for="loginP" class="passwordLabel">Enter password:</label>
+        <input type="text" name="password" class="input" id="loginP" />
+        <input type="submit" name="submit" value="Login" class="button" id="loginbutton" />
+
+
+      </div>
+    </div>
+    <div id="signupBox">
+      <label class="header" id="signupHead"><strong>Sign up</strong></label>
+      <div class="inline" id="signup">
+
+        <label for="signupU" class="usernameLabel">Enter username:</label>
+        <input type="text" name="username" class="input" id="signupU" />
+        <label for="signupP" class="passwordLabel">Enter password:</label>
+        <input type="text" name="password" class="input" id="signupP" />
+        <input type="submit" name="submit" value="Signup" class="button" id="signupbutton" />
+
+
+      </div>
+    </div>
+  </div>
+
+  <div id="urldisplay" class="d-none">
+    <div>
+      <label for="longURLinput">Enter URL To Shorten:</label>
+      <input type="url" name="longURLinput" class="input" id="longURLinput" required />
+
+      <label for="longURLinput">Enter Shortened Name:</label>
+      <input type="text" name="shortURLinput" class="input" id="shortURLinput" />
+
+      <input type="submit" name="newURL" value="New URL" class="button" id="addURL" />
+
+    </div>
+    <div>
+      <label id="yoururl" for="urlTable">Your URLs:</label>
+      <table id="urlTable">
+        <tr>
+          <th></th>
+          <th>Short URL Extension</th>
+          <th>Full URL</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div id="logout" class="d-none">
+    <input type="submit" name="submit" value="logout" id="logoutButton" class="button" />
+  </div>
+ 
+    <div id="popup" class="d-none">
+      <button id="close-btn">x</button>
+
+      <label for="changeLong">Full URL:</label>
+      <input type="url" name="changeLong" class="input" id="changeLong" required />
+
+      <label for="changeShort">Short Name:</label>
+      <input type="text" name="changeShort" class="input" id="changeShort" />
+
+      <button id="enter-btn">enter</button>
+      <p id="editerror"></p>
+    </div>
+
+
+
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous">
+    </script>
+  <script src="loginsignup.js"></script>
+
+  <!-- <from> 
+        <label for="insert"><strong>Insert URL: </strong>  </label>
+        <input type="text" name="target" />
+        <input type="submit" name="submit" value="submit" />
+    </from> -->
+
+</body>
+
+</html>

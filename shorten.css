@@ -1,0 +1,159 @@
+
+.d-none {
+    display: none;
+}
+
+
+body {
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+  }
+  
+   p {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .box {
+    background-color: #ffffff;
+    border-radius: 5px;
+    margin: 0 auto;
+    max-width: 500px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  #loginSignup {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  
+  .inline {
+    display: inline-block;
+    text-align: left;
+  }
+  
+  .header {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .label {
+    display: inline-block;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+  }
+  
+  
+  .input {
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  .button {
+    background-color: #008CBA;
+    border: none;
+    border-radius: 3px;
+    color: #ffffff;
+    cursor: pointer;
+    display: block;
+    font-size: 1.2rem;
+    margin: 0 auto;
+    padding: 10px;
+    text-align: center;
+    width: 50%;
+  }
+  
+  #error #editerror {
+    color: red;
+    text-align: center;
+    margin-bottom: 10px;
+  } 
+
+  #yoururl{
+    display: inline-block;
+    font-size: 1.2rem;
+    margin-top: 100px;
+  }
+
+  /* ------------ */
+
+  #urlTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    }
+    
+    #urlTable th, #urlTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    }
+    
+    #urlTable th {
+    background-color: #008CBA;
+    color: #ffffff;
+    }
+
+    #popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        z-index: 999;
+      }
+      
+      #close-btn {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        outline: none;
+      }
+      #enter-btn {
+        background-color: #008CBA;
+        border: none;
+        border-radius: 3px;
+        color: #ffffff;
+        cursor: pointer;
+        display: block;
+        font-size: 1.2rem;
+        margin: 0 auto;
+        padding: 10px;
+        text-align: center;
+        width: 100%;
+      }
+      #changeLong, #changeShort {
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        display: block;
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        padding: 10px;
+        width: 95%;
+      }
+      #editerror {
+        color: red;
+        text-align: center;
+        margin-bottom: 10px;
+      } 
+    
+    
+    
+  
