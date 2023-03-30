@@ -1,14 +1,10 @@
 function login() {
 
-
   const username = $("#loginU").val();
   const password = $("#loginP").val();
 
-  console.log(password);
-
-
+  // check there is input
   if (username == "" || password == "") {
-    console.log("got here");
     return;
   }
 
@@ -24,29 +20,30 @@ function login() {
     .then((response) => response.json())
     .then((data) => {
 
-      console.log("Success:", data);
+      
       const str = JSON.stringify(data);
       let parsed = JSON.parse(str);
-      // const str = JSON.stringify(data);
-      // alert(str);
-      //clear input
+     
       let username = $("#loginU").val();
+      // clear input fields
       $("#loginU").val("");
       $("#loginP").val("");
+
+      // checking if there were errors in php
       if (!parsed.success) {
         $("#error").text(data.message);
+
       } else {
+        //update html
         $("#loginSignup").css("display", "none");
         $("#signupBox").css("display", "");
         $("#logout").removeClass("d-none");
         $("#urldisplay").removeClass("d-none");
         $("#error").text("");
 
-
+        // load urls
         loadLinks();
       }
-
-      // $("#welcome").html("welcome to your calendar " + username);
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -57,7 +54,8 @@ function signup() {
   const username = $("#signupU").val();
   const password = $("#signupP").val();
 
-  if (username == "" || password == "") {
+  //check there is input
+  if (username == "" || password == "") { 
     return;
   }
 
@@ -83,8 +81,9 @@ function signup() {
         $("#error").text("Username Already Exists");
       } else {
         $("#signupBox").css("display", "none");
+        $("#login").removeClass("inline");
       }
-      // $("#welcome").html("sign up successful");
+      
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -105,15 +104,14 @@ function logout() {
       //clear links
       $("#urlTable").html(`<table id="urlTable"><tr><th></th> <th>Short URL Extension</th> <th>Full URL</th> <th></th> <th></th></tr></table>`);
 
-
+      // reset display
       $("#loginSignup").css("display", "");
       $("#urldisplay").addClass("d-none");
       $("#logout").addClass("d-none");
+      $("#login").addClass("inline");
 
 
 
-
-      // $("#welcome").html("");
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -121,11 +119,8 @@ function logout() {
 }
 
 function addURL() {
-  // CHECK URL VALIDITY
-
-
-
-
+  
+  //check fields fillded
   if ($("#longURLinput").val() == "") {
     $("#error").text("Fields Not Completed");
     return;
@@ -135,12 +130,13 @@ function addURL() {
     return;
   }
 
+  //check url validity
   if (!checkURL($("#longURLinput").val())) {
     $("#error").text("Not Valid URL");
     return;
   }
 
-  //  fetch php page
+  
   const data = {
     long: $("#longURLinput").val(),
     short: $("#shortURLinput").val()
@@ -191,26 +187,27 @@ function loadLinks() {
   })
     .then((response) => response.json())
     .then((data) => {
-      // console.log("Success:", data);
-
+     
+    
       let currHtml = $("#urlTable").children().eq(0).html();
+      
+      //urls from data base
       urls = data.urls
 
 
-
+      //iterate through database urls and assign vars
       for (let i = 0; i < urls.length; i++) {
         const short = urls[i].short;
         const link = "http://ec2-18-188-67-75.us-east-2.compute.amazonaws.com/~lev/tamid/sendTo.php?loc=" + short;
         const full = urls[i].full;
         const id = urls[i].id;
 
-
+        // add to the html
         currHtml = currHtml + `<tr id="${id}"> <td> <input type="submit" value="copy full" class="copy"/> </td><td> <a href="${link}">${short}</a></td> <td> ${full} </td> <td> <input type="submit" value="delete" class="delete"/> </td> <td> <input type="submit" value="edit" class="edit"/> </td> </tr>`
-        // console.log(currHtml);
         $("#urlTable").html(currHtml);
 
       }
-
+      //add buttons
       $(".delete").on("click", deleteURL);
       $(".copy").on("click", copyURL);
       $(".edit").on("click", showPopup);
@@ -241,7 +238,7 @@ function deleteURL() {
     .then((response) => response.json())
     .then((data) => {
       console.log("Success:", data);
-
+      // redisplay after delete
       loadLinks();
     })
     .catch((error) => {
@@ -255,7 +252,7 @@ function showPopup() {
   $("#popup").removeClass("d-none");
 
   $("#enter-btn").on("click", (event) => {
-
+    //pulls up for specific url clicked
     editURL($(this));
   });
 
@@ -277,12 +274,12 @@ function editURL(target) {
   const full = $("#changeLong").val();
   const short = $("#changeShort").val();
 
-  // console.log($(this));
-
+  //check fields filled
   if (short == "" || full == "") {
     $("#editerror").text("Fields not completed");
     return;
   }
+  //check url validity
   console.log($("#changeLong").val());
   if (!checkURL($("#changeLong").val())) {
     $("#editerror").text("Not Valid URL");
@@ -308,7 +305,7 @@ function editURL(target) {
     .then((response) => response.json())
     .then((data) => {
       console.log("Success:", data);
-
+      // update html
       loadLinks();
       closePopup();
     })
@@ -328,6 +325,7 @@ function checkURL(str) {
 }
 
 function copyURL() {
+  //copies the full link to clipboard
   const short = $(this).parent().parent().children().eq(1).children().eq(0);
   var copyText = "http://ec2-18-188-67-75.us-east-2.compute.amazonaws.com/~lev/tamid/sendTo.php?loc="  + short.text();
   var tempInput = $("<input>");
@@ -335,12 +333,14 @@ function copyURL() {
   tempInput.val(copyText).select();
   document.execCommand("copy");
   tempInput.remove();
-
+  
+  
   showCopied('Copied to clipboard!', 1500);
 }
 
 
 function showCopied(message, duration) {
+  //shows notification for user that it was copied
   const popup = document.createElement('div');
   popup.style.position = 'fixed';
   popup.style.bottom = '20px';
