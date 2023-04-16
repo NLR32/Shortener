@@ -135,6 +135,7 @@ function addURL() {
     $("#error").text("Not Valid URL");
     return;
   }
+  $("#error").text("");
 
   
   const data = {
